@@ -4,6 +4,7 @@ import com.example.transactionservice.dto.TransferDto;
 import com.example.transactionservice.model.Transaction;
 import com.example.transactionservice.service.TransactionService;
 import com.example.transactionservice.service.exception.InsufficientBalanceException;
+import com.example.transactionservice.service.exception.UnableToUpdateAccountException;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class TransactionServiceController {
     private final TransactionService transactionService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<Transaction> transfer(@RequestBody @Valid TransferDto dto) throws InsufficientBalanceException {
+    public ResponseEntity<Transaction> transfer(@RequestBody @Valid TransferDto dto) throws InsufficientBalanceException, UnableToUpdateAccountException {
         return new ResponseEntity<Transaction>(transactionService.transfer(dto), HttpStatus.OK);
     }
 }

@@ -3,18 +3,16 @@ package com.example.accountservice.service;
 import com.example.accountservice.model.Account;
 import com.example.accountservice.repo.AccountRepository;
 import com.example.accountservice.service.exception.AccountNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AccountService {
 
     private final AccountRepository accountRepository;
-
-    public AccountService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     public Account get(long id) throws AccountNotFoundException{
         return accountRepository.findById(id)
